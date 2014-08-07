@@ -23,6 +23,29 @@ describe Patient do
     end
   end
 
+  describe 'assign_doctor' do
+    it 'links a doctor to a specific patient' do
+      new_doctor = Doctor.new({'name' => "Cornelius Flanerty", 'specialty' => "proctology"})
+      new_doctor.save
+      new_patient = Patient.new({'name' => 'Colonel Assmaster', 'birthday' => "1934-05-10"})
+      new_patient.save
+      new_patient.assign_doctor("Cornelius Flanerty")
+      expect(new_patient.doctor_id).to eq new_doctor.id
+    end
+  end
+
+  describe 'doctor' do
+    it 'returns the associated doctor' do
+      new_doctor = Doctor.new({'name' => "Cornelius Flanerty", 'specialty' => "proctology"})
+      new_doctor.save
+      new_patient = Patient.new({'name' => 'Colonel Assmaster', 'birthday' => "1934-05-10", 'doctor_id' => new_doctor.id})
+      new_patient.save
+      expect(new_patient.doctor).to eq new_doctor
+      expect(new_patient.doctor.name).to eq "Cornelius Flanerty"
+      expect(new_patient.doctor.specialty).to eq "proctology"
+    end
+  end
+
   describe "==" do
     it 'allows two objects with the same name and birthday to equal eachother' do
       new_patient = Patient.new({'name' => 'Colonel Assmaster', 'birthday' => "1934-05-10"})
