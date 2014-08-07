@@ -30,4 +30,15 @@ describe Doctor do
       expect(test_doctor).to eq test_doctor_two
     end
   end
+  describe 'self.specialty_list' do
+    it 'returns all doctors with a given specialty' do
+      test_doctor_one = Doctor.new({'name' => "Cornelius Flanerty", 'specialty' => "proctology"})
+      test_doctor_two = Doctor.new({'name' => "Reginold Haymaker", 'specialty' => "proctology"})
+      test_doctor_three = Doctor.new({'name' => "Sir Winston Scrumptious", 'specialty' => "OBGYN"})
+      test_doctor_one.save
+      test_doctor_two.save
+      test_doctor_three.save
+      expect(Doctor.specialty_list("proctology")).to eq (["Cornelius Flanerty", "Reginold Haymaker"])
+    end
+  end
 end
