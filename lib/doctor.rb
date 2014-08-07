@@ -1,10 +1,11 @@
 class Doctor
-  attr_reader(:name, :specialty, :id)
+  attr_reader(:name, :specialty, :id, :insurance_id)
 
   def initialize(doctor_info)
     @name = doctor_info['name']
     @specialty = doctor_info['specialty']
     @id = doctor_info['id'].to_i
+    @insurance_id = doctor_info['insurance_id'].to_i
   end
 
   def self.all
@@ -25,6 +26,13 @@ class Doctor
       doctors << new_doc.name
     end
     doctors
+  end
+
+  def assign_insurance(insurance_name)
+    result = DB.exec("SELECT * FROM insurance WHERE name = '#{insurance_name}';")
+    insur_id = result.first['id'].to_i
+    DB.exec("UPDATE doctor SET insurance_id = #{insur_id} WHERE name = '#{self.name}'")
+    @insurance_id = insur_id
   end
 
   def save
