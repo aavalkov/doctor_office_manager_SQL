@@ -18,8 +18,8 @@ class Doctor
   end
 
   def save
-    id = DB.exec("INSERT INTO doctor (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
-    @id = id
+    result = DB.exec("INSERT INTO doctor (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
+    @id = result.first['id'].to_i
   end
 
   def == (another_doctor)

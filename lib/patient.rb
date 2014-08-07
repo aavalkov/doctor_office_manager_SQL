@@ -16,4 +16,13 @@ class Patient
     end
     patients
   end
+
+  def save
+    result = DB.exec("INSERT INTO patient (name, birthday) VALUES ('#{@name}', '#{@birthday}') RETURNING id;")
+    @id = result.first['id'].to_i
+  end
+
+  def ==(another_patient)
+    self.name == another_patient.name && self.birthday == another_patient.birthday
+  end
 end
