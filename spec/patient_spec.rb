@@ -46,6 +46,15 @@ describe Patient do
     end
   end
 
+  describe 'delete' do
+    it 'deletes a patient from the database' do
+      new_patient = Patient.new({'name' => 'Colonel Assmaster', 'birthday' => "1934-05-10"})
+      new_patient.save
+      new_patient.delete
+      expect(Patient.all).to eq []
+    end
+  end
+
   describe "==" do
     it 'allows two objects with the same name and birthday to equal eachother' do
       new_patient = Patient.new({'name' => 'Colonel Assmaster', 'birthday' => "1934-05-10"})

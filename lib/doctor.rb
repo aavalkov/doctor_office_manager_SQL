@@ -35,6 +35,10 @@ class Doctor
     @insurance_id = insur_id
   end
 
+  def delete
+    DB.exec("DELETE FROM doctor WHERE id = #{self.id};")
+  end
+
   def save
     result = DB.exec("INSERT INTO doctor (name, specialty) VALUES ('#{@name}', '#{@specialty}') RETURNING id;")
     @id = result.first['id'].to_i

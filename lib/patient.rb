@@ -23,6 +23,10 @@ class Patient
     @id = result.first['id'].to_i
   end
 
+  def delete
+    DB.exec("DELETE FROM patient WHERE id = #{self.id};")
+  end
+
   def ==(another_patient)
     self.name == another_patient.name && self.birthday == another_patient.birthday
   end
