@@ -47,8 +47,10 @@ describe Doctor do
     it 'gives a doctor an insurance'do
       test_doctor = Doctor.new({'name' => "Cornelius Flanerty", 'specialty' => "proctology"})
       test_doctor.save
+      new_insurance = Insurance.new({'name' => "Red Shield"})
+      new_insurance.save
       test_doctor.assign_insurance('Red Shield')
-      expect(test_doctor.insurance_id).to eq 1
+      expect(test_doctor.insurance_id).to eq new_insurance.id
     end
   end
 
