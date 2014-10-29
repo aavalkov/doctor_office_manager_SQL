@@ -1,16 +1,16 @@
-DOCTOR'S OFFICE MANAGER
-==================================
+#DOCTOR'S OFFICE MANAGER
 
-#Authors:
+##Authors:
+Anna Valkov & Christian Danielsen
 
-####Anna Valkov
-####Christian Danielsen
+##Date
+8/7/2014
 
-##8/7/2014
-
-###Version:
+##Version:
 V.1.0.0.1
 
-###Description: A program for managing doctor, patient, and insurance information. WIP
+##Description 
+A Ruby and PostgrSQL program for managing doctor, patient, and insurance information. 
+Work in Progress
 
 Copyright © 2014
